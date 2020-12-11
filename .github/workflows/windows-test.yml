@@ -8,7 +8,7 @@ jobs:
       strategy:
         matrix:
           os: [windows-latest]
-          python-version: [3.8]
+          python-version: [3.7]
       steps:
         - uses: actions/checkout@v2
         - uses: conda-incubator/setup-miniconda@v2
@@ -20,6 +20,7 @@ jobs:
           run: python -c "import sys; print(sys.version)"
         - name: Install dependencies
           run: |
+            chcp 65001
             python -m pip install --upgrade pip
             pip install pipwin
             pipwin install pyicu
@@ -31,4 +32,4 @@ jobs:
             pip install .[full]
         - name: Test
           run: |
-            python setup.py test
+            python -m unittest discover
