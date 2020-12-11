@@ -8,7 +8,7 @@ jobs:
       strategy:
         matrix:
           os: [macos-11.0]
-          python-version: [3.7]
+          python-version: [3.8]
       steps:
         - uses: actions/checkout@v2
         - uses: conda-incubator/setup-miniconda@v2
@@ -23,7 +23,7 @@ jobs:
             conda install -c conda-forge icu
             conda install -c conda-forge pyicu
             conda install -c conda-forge marisa-trie
-            conda install tensorflow
+            pip install tensorflow<3
             pip install pytest
             pip install "h5py>=2.10.0,<3"
             pip install torch==1.7.0
